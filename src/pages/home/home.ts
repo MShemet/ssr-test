@@ -1,3 +1,3 @@
-import "./home.css";
+import './home.css';
 
 console.log(2);

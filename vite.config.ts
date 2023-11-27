@@ -3,7 +3,6 @@ import { defineConfig, type PluginOption } from 'vite';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import ViteSvgSpriteWrapper from 'vite-svg-sprite-wrapper';
 import postcssNested from 'postcss-nested';
-import stylelint from 'stylelint';
 
 export default defineConfig(({ command }) => {
   const plugins: PluginOption[] = [
@@ -40,14 +39,7 @@ export default defineConfig(({ command }) => {
 
     css: {
       postcss: {
-        plugins: [
-          postcssNested(),
-          stylelint({
-            config: {
-              extends: ['stylelint-config-standard'],
-            },
-          }),
-        ],
+        plugins: [postcssNested()],
       },
     },
 
