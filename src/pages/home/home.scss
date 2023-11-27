@@ -1,0 +1,12 @@
+body {
+  background-color: red;
+  top: 0;
+}
+
+.container {
+  background-color: #000;
+
+  &__test {
+    color: red;
+  }
+}

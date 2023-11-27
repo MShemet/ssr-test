@@ -2,7 +2,6 @@ import { resolve } from 'path';
 import { defineConfig, type PluginOption } from 'vite';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import ViteSvgSpriteWrapper from 'vite-svg-sprite-wrapper';
-import postcssNested from 'postcss-nested';
 
 export default defineConfig(({ command, mode }) => {
   const plugins: PluginOption[] = [
@@ -22,7 +21,7 @@ export default defineConfig(({ command, mode }) => {
   if (command === 'build' && mode === 'production') {
     plugins.push(
       ViteImageOptimizer({
-        exclude: ['sprite.svg'],
+        exclude: ['sprite-base.svg'],
       }),
     );
   }
@@ -34,6 +33,7 @@ export default defineConfig(({ command, mode }) => {
       emptyOutDir: true,
       rollupOptions: {
         input: {
+          index: resolve(__dirname, 'src/scripts/index.ts'),
           home: resolve(__dirname, 'src/pages/home/home.ts'),
         },
         output: {
@@ -44,15 +44,17 @@ export default defineConfig(({ command, mode }) => {
       },
     },
 
-    css: {
-      postcss: {
-        plugins: [postcssNested()],
-      },
-    },
-
     resolve: {
       alias: {
         '@': new URL('./src', import.meta.url).pathname,
+      },
+    },
+
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import "@/styles/_variables.scss";`,
+        },
       },
     },
   };

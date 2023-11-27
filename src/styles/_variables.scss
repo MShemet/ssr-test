@@ -1,0 +1,163 @@
+/* COLORS */
+/* -------------------------------------------------- */
+$color-white: var(--color-white);
+$color-black: var(--color-black);
+
+$color-red-100: var(--color-red-100);
+$color-red-200: var(--color-red-200);
+$color-red-300: var(--color-red-300);
+$color-red-400: var(--color-red-400);
+$color-red-500: var(--color-red-500);
+$color-red-600: var(--color-red-600);
+$color-red-700: var(--color-red-700);
+$color-red-800: var(--color-red-800);
+$color-red-900: var(--color-red-900);
+$color-red-950: var(--color-red-950);
+
+$color-yellow-100: var(--color-yellow-100);
+$color-yellow-200: var(--color-yellow-200);
+$color-yellow-400: var(--color-yellow-400);
+$color-yellow-600: var(--color-yellow-600);
+$color-yellow-800: var(--color-yellow-800);
+$color-yellow-900: var(--color-yellow-900);
+
+$color-green-100: var(--color-green-100);
+$color-green-200: var(--color-green-200);
+$color-green-400: var(--color-green-400);
+$color-green-600: var(--color-green-600);
+$color-green-800: var(--color-green-800);
+$color-green-900: var(--color-green-900);
+
+$color-dark-blue-100: var(--color-dark-blue-100);
+$color-dark-blue-200: var(--color-dark-blue-200);
+$color-dark-blue-300: var(--color-dark-blue-300);
+$color-dark-blue-400: var(--color-dark-blue-400);
+$color-dark-blue-500: var(--color-dark-blue-500);
+$color-dark-blue-600: var(--color-dark-blue-600);
+$color-dark-blue-800: var(--color-dark-blue-800);
+$color-dark-blue-900: var(--color-dark-blue-900);
+
+$color-black-100: var(--color-black-100);
+$color-black-200: var(--color-black-200);
+$color-black-300: var(--color-black-300);
+$color-black-400: var(--color-black-400);
+$color-black-500: var(--color-black-500);
+$color-black-600: var(--color-black-600);
+$color-black-800: var(--color-black-800);
+$color-black-900: var(--color-black-900);
+
+$color-new-black-100: var(--color-new-black-100);
+$color-new-black-200: var(--color-new-black-200);
+$color-new-black-300: var(--color-new-black-300);
+$color-new-black-400: var(--color-new-black-400);
+$color-new-black-500: var(--color-new-black-500);
+$color-new-black-600: var(--color-new-black-600);
+$color-new-black-700: var(--color-new-black-700);
+$color-new-black-800: var(--color-new-black-800);
+$color-new-black-900: var(--color-new-black-900);
+
+$color-primary-100: var(--color-primary-100);
+$color-primary-200: var(--color-primary-200);
+$color-primary-400: var(--color-primary-400);
+$color-primary-600: var(--color-primary-600);
+$color-primary-800: var(--color-primary-800);
+$color-primary-900: var(--color-primary-900);
+
+$color-secondary-100: var(--color-secondary-100);
+$color-secondary-200: var(--color-secondary-200);
+$color-secondary-400: var(--color-secondary-400);
+$color-secondary-600: var(--color-secondary-600);
+$color-secondary-800: var(--color-secondary-800);
+$color-secondary-900: var(--color-secondary-900);
+
+$primary: $color-primary-800;
+$secondary: $color-secondary-800;
+
+/* CONSTANTS */
+/* -------------------------------------------------- */
+$anim-primary: 0.25s ease;
+$anim-secondary: 0.4s ease;
+
+$border-radius-small: 4px;
+$border-radius-medium: 8px;
+
+$brd-4: 4px;
+$brd-6: 6px;
+$brd-8: 8px;
+$brd-12: 12px;
+$brd-16: 16px;
+$brd-24: 24px;
+
+$shadow-indicator: 0px 5px 30px 0px rgba(110, 113, 145, 0.15);
+$shadow-card: 0px 12px 40px -8px rgba(0, 16, 80, 0.06);
+$shadow-card--active: 0px 12px 40px -8px rgba(0, 16, 80, 0.15);
+$shadow-small: 0px 1px 2px rgba(78, 75, 102, 0.12);
+$shadow-small--active: 0px 2px 8px 0px rgba(34, 46, 58, 0.15);
+$shadow-medium: 0px 12px 32px -12px rgba(78, 75, 102, 0.12);
+$shadow-medium--active: 0px 0px 32px -12px rgba(78, 75, 102, 0.12);
+$shadow-medium--alt: 0px 8px 48px -8px rgba(78, 75, 102, 0.16);
+$shadow-large: 12px 16px 40px -12px rgba(78, 75, 102, 0.08);
+$shadow-btn-inset: inset 0px 0px 3px rgba(20, 20, 42, 0.4);
+
+/* CONTAINERS */
+/* -------------------------------------------------- */
+$sizes-loc: (
+  'xs': 364px,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+);
+
+@mixin media($media) {
+  @each $size, $resolution in $sizes-loc {
+    @if $media == $size {
+      @media only screen and (min-width: $resolution) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin media-down($media) {
+  @each $size, $resolution in $sizes-loc {
+    @if $media == $size {
+      @media only screen and (max-width: ($resolution - 1px)) {
+        @content;
+      }
+    }
+  }
+}
+
+/* MIXINS */
+/* -------------------------------------------------- */
+@mixin reset-btn {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+@mixin reset-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin reset-link {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@mixin reset-selection {
+  pointer-events: none;
+  user-select: none;
+}
+
+@mixin hide-scroll {
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
