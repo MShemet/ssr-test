@@ -4,15 +4,22 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import ViteSvgSpriteWrapper from 'vite-svg-sprite-wrapper';
 import postcssNested from 'postcss-nested';
 
-export default defineConfig(({ command }) => {
+export default defineConfig(({ command, mode }) => {
   const plugins: PluginOption[] = [
     ViteSvgSpriteWrapper({
       icons: 'src/svg-sprite/*.svg',
       outputDir: 'public/images/',
+      sprite: {
+        mode: {
+          symbol: {
+            sprite: '../sprite-base',
+          },
+        },
+      },
     }),
   ];
 
-  if (command === 'build') {
+  if (command === 'build' && mode === 'production') {
     plugins.push(
       ViteImageOptimizer({
         exclude: ['sprite.svg'],
@@ -43,14 +50,10 @@ export default defineConfig(({ command }) => {
       },
     },
 
-    // resolve: {
-    //   alias: {
-    //     '@': new URL('./src', import.meta.url).pathname,
-    //   },
-    // },
-
-    // server: {
-    //   host: true,
-    // },
+    resolve: {
+      alias: {
+        '@': new URL('./src', import.meta.url).pathname,
+      },
+    },
   };
 });
